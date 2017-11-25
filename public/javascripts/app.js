@@ -3,11 +3,24 @@ function loadData(name) {
 	fetch('/app/api')
 		.then(res => res.json())
 		.then(i => {
-			console.log(i[0][name])
-			document.querySelector('#app-transactions')
-			res = i[0][name];
+			var temp = `
+				<tr>
+			    <th>name</th>
+			    <th>date</th>
+			    <th>currency</th>
+			  </tr>
+			`;
+			i[0][name].forEach(j => {
+				temp += `
+					<tr>
+						<td>${j.title}</td>
+						<td>${j.date}</td>
+						<td>${j.cost}</td>
+					</tr>
+				`;
+			})
+			document.querySelector('#app-transactions').innerHTML = temp;
 		})
-	return res;
 }
 
-console.log(loadData('transactions'));
+loadData('transactions');
