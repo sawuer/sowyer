@@ -1,9 +1,5 @@
 <h1>{{title}}</h1>
 
-<div id="app">
-	<table id="app-transactions">
-		
-	</table>
 	<form id="app-newdataform">
 		<input type="text" placeholder="title" name="title">
 		<input type="text" placeholder="type" name="type">
@@ -16,4 +12,6 @@
 			cost: $_('#app-newdataform [name=cost]').value
 		})">Add new</a>
 	</form>
+<div id="app">
+	<table id="app-transactions"></table>
 </div>

@@ -6,24 +6,25 @@
 		fetch('/app/api')
 			.then(res => res.json())
 			.then(i => {
+				var rows = [];
 				$_('#app-transactions').innerHTML = `<tr>
-			    <th>title</th>
-			    <th>type</th>
-			    <th>date</th>
-			    <th>currency</th>
+			    <th>title</th><th>type</th>
+			    <th>date</th><th>currency</th>
 			  </tr>`;
-				var temp = [];
 				i[0][name].forEach((j, idx) => {
-					temp.unshift(`
-						<tr data-transaction="${idx}">
+					rows.unshift(`
+						<tr>
 							<td>${j.title}</td>
 							<td>${j.type}</td>
 							<td>${j.date}</td>
-							<td>${j.cost}</td>
+							<td>
+								${j.cost} 
+								<button onclick="app.deleteData(event, '${j['_id']}')">X</button>
+							</td>
 						</tr>
 					`);
 				});
-				$_('#app-transactions').innerHTML += temp.join('');
+				$_('#app-transactions').innerHTML += rows.join('');
 			})
 		};
 

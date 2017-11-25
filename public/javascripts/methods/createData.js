@@ -7,10 +7,10 @@
 		fetch('/app/api/transactions/create-transaction', {
 			method: 'post',
 			body: JSON.stringify(conf),
-			headers: {
-				'Content-Type':  'application/json'
-			}
+			headers: { 'Content-Type':  'application/json' }
 		});
-		context.app.loadData('transactions');
+		setTimeout(() => {
+			context.app.loadData('transactions');
+		}, 500);
 	}
 })(this);

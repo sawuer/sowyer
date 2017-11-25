@@ -27,7 +27,7 @@ router.get(api, (req, res, next) => {
 		db.collection('users')
 			.find({ '_id': ObjectID('5a197c1af7d11cd211b8dd95')})
 			.toArray((err, docs) => {
-				res.send(docs)
+				res.send(docs);
 				db.close();
 			});
 	});
@@ -36,18 +36,36 @@ router.get(api, (req, res, next) => {
 
 
 router.post(api + '/transactions/create-transaction', (req, res, next) => {
-	var model = {
-		title: req.body.title,
-		type: req.body.type,
-		date: req.body.date,
-		cost: req.body.cost,
-	};
 	mongo.connect(url, (err, db) => {
 		assert.equal(null, err);
 		db.collection('users')
-			.update({ '_id': ObjectID('5a197c1af7d11cd211b8dd95')}, 
-				{ $push: { transactions: model}
+			.update({ '_id': ObjectID('5a197c1af7d11cd211b8dd95')}, { 
+				$push: { 
+					transactions: {
+						'_id': (Math.random() + '').split('.')[1].slice(1, 10),
+						title: req.body.title,
+						type: req.body.type,
+						date: req.body.date,
+						cost: req.body.cost,
+					}
+				}}, (err, docs) => {
+					if (err) console.log(err)
+					db.close();
+				});
+	});
+});
+
+
+
+
+router.delete(api + '/transactions/delete-transaction/:id', (req, res, next) => {
+	mongo.connect(url, (err, db) => {
+		assert.equal(null, err);
+		db.collection('users').update(
+				{ '_id': ObjectID('5a197c1af7d11cd211b8dd95')}, 
+				{ $pull: { 'transactions': { '_id': req.params.id }}
 				}, (err, docs) => {
+					console.log(req.params.id)
 					if (err) console.log(err)
 					db.close();
 				});
