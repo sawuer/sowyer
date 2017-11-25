@@ -92,6 +92,7 @@ input {
 button {
   margin-top: 10px;
   border: none;
+  transition: all 500ms;
   border-radius: 2px;
   background: #fff;
   padding: 5px 10px;
@@ -107,6 +108,9 @@ button {
   border: 1px solid black;
 }
 
+.fadeOut button {
+  opacity: 0;
+}
 
 .fadeOut td {
   opacity: 0;

@@ -13,13 +13,13 @@
 			  </tr>`;
 				i[0][name].forEach((j, idx) => {
 					rows.unshift(`
-						<tr>
+						<tr data-row="${j['_id']}">
 							<td>${j.title}</td>
 							<td>${j.type}</td>
 							<td>${j.date}</td>
 							<td>
 								${j.cost} 
-								<button onclick="app.deleteData(event, '${j['_id']}')">X</button>
+								<button onclick="app.deleteData('${j['_id']}')">X</button>
 							</td>
 						</tr>
 					`);
