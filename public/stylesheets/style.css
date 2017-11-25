@@ -43,9 +43,6 @@ td, th {
   text-align: left;
 }
 
-tr {
-  transition: all 300ms;
-}
 
 th {
   color: #ccc;
@@ -58,6 +55,8 @@ th:last-child, td:last-child {
 
 td {
   position: relative;
+  transition: all 500ms;
+
 }
 
 td button {
@@ -108,8 +107,9 @@ button {
   border: 1px solid black;
 }
 
-.fadeOut {
-  transition: 300ms;
+
+.fadeOut td {
   opacity: 0;
+  border: #fff;
 }
 
