@@ -1,26 +1,28 @@
-function loadData(name) {
-	var res;
-	fetch('/app/api')
-		.then(res => res.json())
-		.then(i => {
-			var temp = `
-				<tr>
-			    <th>name</th>
-			    <th>date</th>
-			    <th>currency</th>
-			  </tr>
-			`;
-			i[0][name].forEach(j => {
-				temp += `
-					<tr>
-						<td>${j.title}</td>
-						<td>${j.date}</td>
-						<td>${j.cost}</td>
-					</tr>
-				`;
-			})
-			document.querySelector('#app-transactions').innerHTML = temp;
-		})
-}
+(context => {
+	'use strict';
 
-loadData('transactions');
+	context.app = {
+		loadData(name) {
+			fetch('/app/api')
+				.then(res => res.json())
+				.then(i => {
+					var temp = [];
+					i[0][name].forEach((j, idx) => {
+						temp.unshift(`
+							<tr data-transaction="${idx}">
+								<td>${j.title}</td>
+								<td>${j.date}</td>
+								<td>${j.cost}</td>
+							</tr>
+						`);
+					})
+					$_('#app-transactions').innerHTML += temp.join('');
+				})
+		},
+
+	}
+})(this);
+
+
+
+app.loadData('transactions');
