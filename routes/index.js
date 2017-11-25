@@ -4,7 +4,7 @@ var mongo = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 var assert = require('assert');
 var url = 'mongodb://localhost:27017/moneyapp';
-
+var api = '/app/api';
 
 
 router.get('/', (req, res, next) => {
@@ -13,25 +13,15 @@ router.get('/', (req, res, next) => {
 
 
 router.get('/app', (req, res, next) => {
-	var transactions = [];
-	mongo.connect(url, (err, db) => {
-		assert.equal(null, err);
-		db.collection('users')
-			.find({ '_id': ObjectID('5a197c1af7d11cd211b8dd95')})
-			.toArray((err, docs) => {
-				res.render('app', {
-					title: 'Moneyapp',
-					transactions: docs[0].transactions
-				});
-				db.close();
-		});
+	res.render('app', {
+		title: 'Moneyapp',
 	});
 });
 
 
 
 
-router.get('/app/api', (req, res, next) => {
+router.get(api, (req, res, next) => {
 	mongo.connect(url, (err, db) => {
 		assert.equal(null, err);
 		db.collection('users')
@@ -45,7 +35,7 @@ router.get('/app/api', (req, res, next) => {
 
 
 
-router.post('/app/api/data/transactions/create-transaction', (req, res, next) => {
+router.post(api + '/transactions/create-transaction', (req, res, next) => {
 	var model = {
 		title: req.body.title,
 		type: req.body.type,

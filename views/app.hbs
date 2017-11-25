@@ -1,26 +1,19 @@
 <h1>{{title}}</h1>
 
-<!-- <table>
-  <tr>
-    <th>name</th>
-    <th>date</th>
-    <th>currency</th>
-  </tr>
-  {{# each transactions }}
-    <tr>
-      <td>{{this.title}}</td>
-      <td>{{this.date}}</td>
-      <td><b>{{this.cost}}</b></td>
-    </tr>
-  {{/each}}
-</table> -->
-
 <div id="app">
 	<table id="app-transactions">
-		<tr>
-	    <th>name</th>
-	    <th>date</th>
-	    <th>currency</th>
-	  </tr>
+		
 	</table>
+	<form id="app-newdataform">
+		<input type="text" placeholder="title" name="title">
+		<input type="text" placeholder="type" name="type">
+		<input type="date" placeholder="date" name="date">
+		<input type="number" placeholder="cost" name="cost">
+		<a onclick="app.createData({
+			title: $_('#app-newdataform [name=title]').value,
+			type: $_('#app-newdataform [name=type]').value,
+			date: $_('#app-newdataform [name=date]').value,
+			cost: $_('#app-newdataform [name=cost]').value
+		})">Add new</a>
+	</form>
 </div>
