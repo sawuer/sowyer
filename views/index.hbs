@@ -1,0 +1,68 @@
+<div class="app">
+  <h1>Money App with MongoDB</h1>
+  <section class="table-data">
+    <table>
+      <tr>
+        <th>name</th>
+        <th>date</th>
+        <th>{{currency}}</th>
+        <th>ID</th>
+      </tr>
+      {{# each transactions }}
+        <tr>
+          <td>{{this.title}}</td>
+          <td>{{this.date}}</td>
+          <td><b>{{this.cost}}</b></td>
+          <td>
+            {{this._id}}
+            <form action="/delete" method="post">
+              <input style="display: none;" type="text" value="{{ this._id }}" required id="key" name="key">
+              <button type="submit">X</button>
+            </form>
+          </td>
+        </tr>
+      {{/each}}
+    </table>
+  </section>
+  <section class="insert">
+      <h3>Insert Data</h3>
+      <form action="/insert" method="post">
+          <div class="input">
+              <label for="title">Title</label>
+              <input type="text" required id="title" name="title">
+          </div>
+          <div class="input">
+              <label for="cost">Cost</label>
+              <input type="text" required id="cost" name="cost">
+          </div>
+          <div class="input">
+              <label for="date">Date</label>
+              <input type="date" required id="date" name="date">
+          </div>
+          <button type="submit">INSERT</button>
+      </form>
+  </section>
+
+  <section class="update">
+      <h3>Update Data</h3>
+      <form action="/update" method="post">
+          <div class="input">
+              <label for="key">ID</label>
+              <input type="text"  id="key" name="key">
+          </div>
+          <div class="input">
+              <label for="title">Title</label>
+              <input type="text"  id="title" name="title">
+          </div>
+          <div class="input">
+              <label for="cost">Cost</label>
+              <input type="text"  id="cost" name="cost">
+          </div>
+          <div class="input">
+              <label for="date">Date</label>
+              <input type="date"  id="date" name="date">
+          </div>
+          <button type="submit">UPDATE</button>
+      </form>
+  </section>
+</div>

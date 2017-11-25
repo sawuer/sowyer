@@ -1,0 +1,103 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #fff;
+}
+
+.app {
+  padding: 0 50px;
+  overflow: hidden;
+}
+
+section {
+  float: left;
+  padding: 20px;
+  width: 33.333%;
+  box-sizing: border-box;
+}
+
+.table-data {
+  width: 100%;
+  margin-bottom: 10px;
+  border: none;
+  padding: 0;
+  height: auto;
+  padding-right: 33px;
+}
+section h3 {
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+td, th {
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  text-align: left;
+}
+
+th {
+  color: #ccc;
+  font-weight: lighter;
+}
+
+th:last-child, td:last-child {
+  text-align: right;
+}
+
+td {
+  position: relative;
+}
+
+td button {
+  position: absolute;
+  right: -33px;
+  top: -1px;
+  margin-top: 0;
+  border-radius: 0;
+  height: 29px;
+  outline: none;
+}
+
+td button:hover {
+  background: #eee;
+}
+
+input {
+	width: calc(100% - 5px);
+	height: 20px;
+}
+
+.input label {
+  display: block;
+  padding: 2px 0;
+  color: #aaa;
+  font-size: 12px;
+}
+
+
+button {
+  margin-top: 10px;
+  border: none;
+  border-radius: 2px;
+  background: #fff;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.item {
+  margin: 10px 0;
+  padding: 5px;
+  background: #95a5a6;
+  border: 1px solid black;
+}
+
