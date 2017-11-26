@@ -5,13 +5,14 @@
 	context.app.loadData = name => {
 		fetch('/app/api')
 			.then(res => res.json())
-			.then(i => {
+			.then(it => {
 				var rows = [];
+				var cash = 0;
 				$_('#app-transactions').innerHTML = `<tr>
 			    <th>title</th><th>type</th>
 			    <th>date</th><th>currency</th>
 			  </tr>`;
-				i[0][name].forEach((j, idx) => {
+				it[0][name].forEach(j => {
 					rows.unshift(`
 						<tr data-row="${j['_id']}">
 							<td>${j.title}</td>
@@ -23,6 +24,13 @@
 							</td>
 						</tr>
 					`);
+					console.log(+j.cost)
+					if (j.cost) {
+						cash -= +j.cost;
+					} else {
+						cash = 0;
+					}
+					$_('#cash').innerHTML = cash;
 				});
 				$_('#app-transactions').innerHTML += rows.join('');
 			})

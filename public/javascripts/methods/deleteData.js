@@ -4,9 +4,14 @@
 
 	context.app.deleteData = id => {
 		$_(`[data-row='${id}']`).classList.add('fadeOut');
-		fetch('/app/api/transactions/delete-transaction/' + id, {
-			method: 'delete',
-		});
-		setTimeout(() => context.app.loadData('transactions'), 500);
+		new Promise((res, rej) => {
+			fetch('/app/api/transactions/delete-transaction/' + id, {
+				method: 'delete',
+			});
+		  res('result');
+		}).then(
+			result => setTimeout(() => context.app.loadData('transactions', 500)),
+		  error => console.warn('rejected:', error)
+		);
 	}
 })(this);
